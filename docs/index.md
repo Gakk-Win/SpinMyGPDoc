@@ -55,25 +55,26 @@ dependencyResolutionManagement {
         maven {
             url = uri("https://jfrog.deenislamic.com/artifactory/win")
             credentials {
-                username = providers.gradleProperty("WIN_JFROG_USERNAME").orNull
-                    ?: System.getenv("WIN_JFROG_USERNAME")
-                password = providers.gradleProperty("WIN_JFROG_PASSWORD").orNull
-                    ?: System.getenv("WIN_JFROG_PASSWORD")
+                username = "" // Keep it empty
+                password = providers.gradleProperty("WIN_JFROG_TOKEN").orNull
+                    ?: System.getenv("WIN_JFROG_TOKEN")
             }
         }
     }
 }
 ```
 
+> **Important:**  The Token will be provided from Gakk business team.
+
+
 Store credentials either in your project's `local.properties` (never commit this file):
 
 ```properties
 # local.properties  — add to .gitignore
-WIN_JFROG_USERNAME=your_username
-WIN_JFROG_PASSWORD=your_password
+WIN_JFROG_TOKEN=the_token_provided_from_gakk
 ```
 
-…or as CI environment variables `WIN_JFROG_USERNAME` / `WIN_JFROG_PASSWORD`.
+…or as CI environment variables `WIN_JFROG_TOKEN`.
 
 ### 2b. Declare the dependency
 
