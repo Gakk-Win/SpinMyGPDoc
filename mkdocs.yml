@@ -1,4 +1,5 @@
 site_name: SpinMyGP SDK Documentation
+site_url: https://gakk-win.github.io/SpinMyGPDoc/
 theme:
   name: material
   palette:
