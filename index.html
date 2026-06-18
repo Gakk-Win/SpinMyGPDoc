@@ -1,0 +1,1468 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://gakk-win.github.io/SpinMyGPDoc/">
+      
+      
+      
+        <link rel="next" href="changelog/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>SpinMyGP SDK Documentation</title>
+      
+    
+    
+      <link rel="stylesheet" href="assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#spinmygp-sdk-partner-integration-guide" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="." title="SpinMyGP SDK Documentation" class="md-header__button md-logo" aria-label="SpinMyGP SDK Documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            SpinMyGP SDK Documentation
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Home
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    
+  
+  
+    <li class="md-tabs__item md-tabs__item--active">
+      <a href="." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="changelog/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Changelog
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="." title="SpinMyGP SDK Documentation" class="md-nav__button md-logo" aria-label="SpinMyGP SDK Documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    SpinMyGP SDK Documentation
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="." class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#table-of-contents" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Table of Contents
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-prerequisites" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Prerequisites
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-add-the-dependency" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Add the Dependency
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Add the Dependency">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#2a-add-the-maven-repository" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2a. Add the Maven repository
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2b-declare-the-dependency" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2b. Declare the dependency
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-internet-permission" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Internet Permission
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-observing-events" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Observing Events
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Observing Events">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#recommended-observe-in-an-activity" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Recommended — observe in an Activity
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#in-a-viewmodel" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        In a ViewModel
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-integration-path-a-view-based-host-activity-fragment" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Integration Path A — View-based Host (Activity / Fragment)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. Integration Path A — View-based Host (Activity / Fragment)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#minimal-example" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Minimal example
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#programmatic-dismissal-crucial" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Programmatic Dismissal (Crucial)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#with-all-options" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        With all options
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#full-activity-example" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Full Activity example
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-integration-path-b-pure-compose-host" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Integration Path B — Pure Compose Host
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. Integration Path B — Pure Compose Host">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#step-1-hoist-a-visibility-flag" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 1 — hoist a visibility flag
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-2-place-the-composable" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 2 — place the composable
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-3-trigger-show" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 3 — trigger show
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#full-composable-screen-example" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Full composable screen example
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#controlling-visibility-from-a-viewmodel" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Controlling visibility from a ViewModel
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#advanced-scoping-the-sdks-state-with-viewmodelstoreowner" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        (Advanced) Scoping the SDK's state with viewModelStoreOwner
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-configuration-reference" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Configuration Reference
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="7. Configuration Reference">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ontokenrefresh-callback" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        onTokenRefresh callback
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-event-reference" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Event Reference
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="8. Event Reference">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#reward-properties" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Reward properties
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-reward-tab-types" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. Reward &amp; Tab Types
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="9. Reward &amp; Tab Types">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#rewardtype" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        RewardType
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#spintab" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        SpinTab
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10-proguard-r8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10. ProGuard / R8
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#11-common-patterns" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11. Common Patterns
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="11. Common Patterns">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#deep-link-into-reward-details" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Deep-link into reward details
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#open-directly-to-the-history-tab" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Open directly to the History tab
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#refresh-your-ui-after-the-sheet-closes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Refresh your UI after the sheet closes
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#check-if-the-user-won-not-just-spun" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Check if the user won (not just spun)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#handle-token-expiry-gracefully" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Handle token expiry gracefully
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#12-faq" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        12. FAQ
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="changelog/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Changelog
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="spinmygp-sdk-partner-integration-guide">SpinMyGP SDK — Partner Integration Guide</h1>
+<p><strong>SDK version:</strong> <code>0.0.1</code><br />
+<strong>Min Android SDK:</strong> 21 (Android 5.0)<br />
+<strong>Kotlin:</strong> 2.1+<br />
+<strong>Compose BOM:</strong> 2024.09.00+</p>
+<hr />
+<h2 id="table-of-contents">Table of Contents</h2>
+<ol>
+<li><a href="#1-prerequisites">Prerequisites</a></li>
+<li><a href="#2-add-the-dependency">Add the Dependency</a></li>
+<li><a href="#3-internet-permission">Internet Permission</a></li>
+<li><a href="#4-observing-events">Observing Events</a></li>
+<li><a href="#5-integration-path-a-view-based-host-activity-fragment">Integration Path A — View-based Host (Activity / Fragment)</a></li>
+<li><a href="#6-integration-path-b-pure-compose-host">Integration Path B — Pure Compose Host</a></li>
+<li><a href="#7-configuration-reference">Configuration Reference</a></li>
+<li><a href="#8-event-reference">Event Reference</a></li>
+<li><a href="#9-reward-tab-types">Reward &amp; Tab Types</a></li>
+<li><a href="#10-proguard-r8">ProGuard / R8</a></li>
+<li><a href="#11-common-patterns">Common Patterns</a></li>
+<li><a href="#12-faq">FAQ</a></li>
+</ol>
+<hr />
+<h2 id="1-prerequisites">1. Prerequisites</h2>
+<table>
+<thead>
+<tr>
+<th>Requirement</th>
+<th>Minimum</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Android Gradle Plugin</td>
+<td>8.0+</td>
+</tr>
+<tr>
+<td>Kotlin</td>
+<td>2.1.0+</td>
+</tr>
+<tr>
+<td>Jetpack Compose</td>
+<td>BOM 2024.09.00+</td>
+</tr>
+<tr>
+<td><code>compileSdk</code></td>
+<td>35+</td>
+</tr>
+<tr>
+<td><code>minSdk</code></td>
+<td>21</td>
+</tr>
+</tbody>
+</table>
+<p>The SDK ships as an AAR and bundles all its own transitive dependencies (Compose Material3, Ktor, Coil, Lottie, Haze). You do not need to declare any of those yourself.</p>
+<hr />
+<h2 id="2-add-the-dependency">2. Add the Dependency</h2>
+<h3 id="2a-add-the-maven-repository">2a. Add the Maven repository</h3>
+<p>In your <strong>project-level</strong> <code>settings.gradle.kts</code> (or <code>build.gradle.kts</code>), add the private repository inside <code>dependencyResolutionManagement</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// settings.gradle.kts</span>
+<span class="n">dependencyResolutionManagement</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">repositories</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">google</span><span class="p">()</span>
+<span class="w">        </span><span class="n">mavenCentral</span><span class="p">()</span>
+
+<span class="w">        </span><span class="c1">// SpinMyGP SDK repository</span>
+<span class="w">        </span><span class="n">maven</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">url</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">uri</span><span class="p">(</span><span class="s">&quot;https://jfrog.deenislamic.com/artifactory/win&quot;</span><span class="p">)</span>
+<span class="w">            </span><span class="n">credentials</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="n">username</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;&quot;</span><span class="w"> </span><span class="c1">// Keep it empty</span>
+<span class="w">                </span><span class="n">password</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">providers</span><span class="p">.</span><span class="na">gradleProperty</span><span class="p">(</span><span class="s">&quot;WIN_JFROG_TOKEN&quot;</span><span class="p">).</span><span class="na">orNull</span>
+<span class="w">                    </span><span class="o">?:</span><span class="w"> </span><span class="n">System</span><span class="p">.</span><span class="na">getenv</span><span class="p">(</span><span class="s">&quot;WIN_JFROG_TOKEN&quot;</span><span class="p">)</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<blockquote>
+<p><strong>Important:</strong>  The Token will be provided from Gakk business team.</p>
+</blockquote>
+<p>Store credentials either in your project's <code>local.properties</code> (never commit this file):</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># local.properties  — add to .gitignore</span>
+<span class="na">WIN_JFROG_TOKEN</span><span class="o">=</span><span class="s">the_token_provided_from_gakk</span>
+</code></pre></div>
+<p>…or as CI environment variables <code>WIN_JFROG_TOKEN</code>.</p>
+<h3 id="2b-declare-the-dependency">2b. Declare the dependency</h3>
+<p>In your <strong>app module</strong> <code>build.gradle.kts</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="n">dependencies</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">implementation</span><span class="p">(</span><span class="s">&quot;com.gakk.spin:mygp:0.0.1&quot;</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Sync Gradle — the SDK is now available.</p>
+<hr />
+<h2 id="3-internet-permission">3. Internet Permission</h2>
+<p>The SDK makes network calls. Ensure your <code>AndroidManifest.xml</code> declares internet permission (most apps already have this):</p>
+<div class="highlight"><pre><span></span><code><span class="nt">&lt;uses-permission</span><span class="w"> </span><span class="na">android:name=</span><span class="s">&quot;android.permission.INTERNET&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
+</code></pre></div>
+<hr />
+<h2 id="4-observing-events">4. Observing Events</h2>
+<p>Before you show the sheet, set up an event observer so you can react to what happens inside it. The SDK surfaces all interactions through a single <code>SharedFlow</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="n">SpinSdkCore</span><span class="p">.</span><span class="na">events</span><span class="p">:</span><span class="w"> </span><span class="n">SharedFlow</span><span class="o">&lt;</span><span class="n">SpinEvent</span><span class="o">&gt;</span>
+</code></pre></div>
+<p>The flow has a <strong>replay cache of 1</strong>, so you will always receive the most recent event even if you subscribe slightly late.</p>
+<h3 id="recommended-observe-in-an-activity">Recommended — observe in an Activity</h3>
+<div class="highlight"><pre><span></span><code><span class="kd">class</span><span class="w"> </span><span class="nc">MainActivity</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">AppCompatActivity</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">    </span><span class="kd">override</span><span class="w"> </span><span class="kd">fun</span><span class="w"> </span><span class="nf">onCreate</span><span class="p">(</span><span class="n">savedInstanceState</span><span class="p">:</span><span class="w"> </span><span class="n">Bundle?)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">super</span><span class="p">.</span><span class="na">onCreate</span><span class="p">(</span><span class="n">savedInstanceState</span><span class="p">)</span>
+
+<span class="w">        </span><span class="n">lifecycleScope</span><span class="p">.</span><span class="na">launch</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">repeatOnLifecycle</span><span class="p">(</span><span class="n">Lifecycle</span><span class="p">.</span><span class="na">State</span><span class="p">.</span><span class="na">STARTED</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="n">SpinSdkCore</span><span class="p">.</span><span class="na">events</span><span class="p">.</span><span class="na">collect</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">event</span><span class="w"> </span><span class="o">-&gt;</span>
+<span class="w">                    </span><span class="n">handleSpinEvent</span><span class="p">(</span><span class="n">event</span><span class="p">)</span>
+<span class="w">                </span><span class="p">}</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">fun</span><span class="w"> </span><span class="nf">handleSpinEvent</span><span class="p">(</span><span class="n">event</span><span class="p">:</span><span class="w"> </span><span class="n">SpinEvent</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">when</span><span class="w"> </span><span class="p">(</span><span class="n">event</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="k">is</span><span class="w"> </span><span class="n">SpinEvent</span><span class="p">.</span><span class="na">SheetOpened</span><span class="w">         </span><span class="o">-&gt;</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="cm">/* sheet is now visible */</span><span class="w"> </span><span class="p">}</span>
+<span class="w">            </span><span class="k">is</span><span class="w"> </span><span class="n">SpinEvent</span><span class="p">.</span><span class="na">SheetDismissed</span><span class="w">      </span><span class="o">-&gt;</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="cm">/* sheet is closed */</span><span class="w"> </span><span class="p">}</span>
+<span class="w">            </span><span class="k">is</span><span class="w"> </span><span class="n">SpinEvent</span><span class="p">.</span><span class="na">SpinTriggered</span><span class="w">       </span><span class="o">-&gt;</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="cm">/* wheel is spinning */</span><span class="w"> </span><span class="p">}</span>
+<span class="w">            </span><span class="k">is</span><span class="w"> </span><span class="n">SpinEvent</span><span class="p">.</span><span class="na">SpinCompleted</span><span class="w">       </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">showReward</span><span class="p">(</span><span class="n">event</span><span class="p">.</span><span class="na">reward</span><span class="p">)</span>
+<span class="w">            </span><span class="k">is</span><span class="w"> </span><span class="n">SpinEvent</span><span class="p">.</span><span class="na">SpinFailed</span><span class="w">          </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">showError</span><span class="p">(</span><span class="n">event</span><span class="p">.</span><span class="na">error</span><span class="p">)</span>
+<span class="w">            </span><span class="k">is</span><span class="w"> </span><span class="n">SpinEvent</span><span class="p">.</span><span class="na">AuthFailed</span><span class="w">          </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">redirectToLogin</span><span class="p">()</span>
+<span class="w">            </span><span class="k">is</span><span class="w"> </span><span class="n">SpinEvent</span><span class="p">.</span><span class="na">TabChanged</span><span class="w">          </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">trackTabChange</span><span class="p">(</span><span class="n">event</span><span class="p">.</span><span class="na">tab</span><span class="p">)</span>
+<span class="w">            </span><span class="k">is</span><span class="w"> </span><span class="n">SpinEvent</span><span class="p">.</span><span class="na">GoDetailsClicked</span><span class="w">    </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">openRewardDetails</span><span class="p">(</span><span class="n">event</span><span class="p">.</span><span class="na">rewardType</span><span class="p">)</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="in-a-viewmodel">In a ViewModel</h3>
+<div class="highlight"><pre><span></span><code><span class="kd">class</span><span class="w"> </span><span class="nc">HomeViewModel</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">ViewModel</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">    </span><span class="k">init</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">viewModelScope</span><span class="p">.</span><span class="na">launch</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">SpinSdkCore</span><span class="p">.</span><span class="na">events</span><span class="p">.</span><span class="na">collect</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">event</span><span class="w"> </span><span class="o">-&gt;</span>
+<span class="w">                </span><span class="k">when</span><span class="w"> </span><span class="p">(</span><span class="n">event</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                    </span><span class="k">is</span><span class="w"> </span><span class="n">SpinEvent</span><span class="p">.</span><span class="na">SpinCompleted</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">_reward</span><span class="p">.</span><span class="na">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">event</span><span class="p">.</span><span class="na">reward</span>
+<span class="w">                    </span><span class="k">is</span><span class="w"> </span><span class="n">SpinEvent</span><span class="p">.</span><span class="na">AuthFailed</span><span class="w">    </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">_navigateToLogin</span><span class="p">.</span><span class="na">emit</span><span class="p">(</span><span class="kt">Unit</span><span class="p">)</span>
+<span class="w">                    </span><span class="k">else</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="kt">Unit</span>
+<span class="w">                </span><span class="p">}</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<hr />
+<h2 id="5-integration-path-a-view-based-host-activity-fragment">5. Integration Path A — View-based Host (Activity / Fragment)</h2>
+<p>Use <code>SpinSdkCore.show()</code> when your host screen is a classic View-based Activity or Fragment. The SDK wraps the spin UI inside a native <code>BottomSheetDialog</code> automatically.</p>
+<div class="highlight"><pre><span></span><code><span class="n">SpinSdkCore</span><span class="p">.</span><span class="na">show</span><span class="p">(</span><span class="n">context</span><span class="p">,</span><span class="w"> </span><span class="n">config</span><span class="p">,</span><span class="w"> </span><span class="n">onTokenRefresh</span><span class="p">)</span>
+</code></pre></div>
+<h3 id="minimal-example">Minimal example</h3>
+<div class="highlight"><pre><span></span><code><span class="c1">// In an Activity</span>
+<span class="n">binding</span><span class="p">.</span><span class="na">spinButton</span><span class="p">.</span><span class="na">setOnClickListener</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">SpinSdkCore</span><span class="p">.</span><span class="na">show</span><span class="p">(</span>
+<span class="w">        </span><span class="n">context</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">this</span><span class="p">,</span>
+<span class="w">        </span><span class="n">config</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="n">SpinConfig</span><span class="p">(</span><span class="n">accessToken</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">authRepo</span><span class="p">.</span><span class="na">currentToken</span><span class="p">),</span>
+<span class="w">    </span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="programmatic-dismissal-crucial">Programmatic Dismissal (Crucial)</h3>
+<p>To prevent "WindowLeaked" crashes, you <strong>must</strong> dismiss the SDK sheet (View based dialog) if your Activity is destroyed while the sheet is still open.</p>
+<div class="highlight"><pre><span></span><code><span class="kd">override</span><span class="w"> </span><span class="kd">fun</span><span class="w"> </span><span class="nf">onPause</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">super</span><span class="p">.</span><span class="na">onPause</span><span class="p">()</span>
+<span class="w">    </span><span class="c1">// Optional: dismiss if you want to close the wheel when the user leaves the screen</span>
+<span class="w">    </span><span class="c1">// SpinSdkCore.dismiss()</span>
+<span class="p">}</span>
+
+<span class="kd">override</span><span class="w"> </span><span class="kd">fun</span><span class="w"> </span><span class="nf">onDestroy</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// Strongly Recommended: prevent window leak crashes</span>
+<span class="w">    </span><span class="n">SpinSdkCore</span><span class="p">.</span><span class="na">dismiss</span><span class="p">()</span>
+<span class="w">    </span><span class="k">super</span><span class="p">.</span><span class="na">onDestroy</span><span class="p">()</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="with-all-options">With all options</h3>
+<div class="highlight"><pre><span></span><code><span class="n">SpinSdkCore</span><span class="p">.</span><span class="na">show</span><span class="p">(</span>
+<span class="w">    </span><span class="n">context</span><span class="w">        </span><span class="o">=</span><span class="w"> </span><span class="k">this</span><span class="p">,</span>
+<span class="w">    </span><span class="n">config</span><span class="w">         </span><span class="o">=</span><span class="w"> </span><span class="n">SpinConfig</span><span class="p">(</span>
+<span class="w">        </span><span class="n">accessToken</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">authRepo</span><span class="p">.</span><span class="na">currentToken</span><span class="p">,</span>
+<span class="w">        </span><span class="n">initialTab</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="n">SpinTab</span><span class="p">.</span><span class="na">Details</span><span class="p">,</span>
+<span class="w">    </span><span class="p">),</span>
+<span class="w">    </span><span class="n">onTokenRefresh</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">authRepo</span><span class="p">.</span><span class="na">refreshToken</span><span class="p">()</span><span class="w"> </span><span class="p">},</span><span class="w"> </span><span class="c1">// return null if refresh is not possible</span>
+<span class="p">)</span>
+</code></pre></div>
+<blockquote>
+<p><strong>Important:</strong> Pass an <code>Activity</code> (or a theme-compatible context) — passing an <code>Application</code>
+context will cause a window-token crash when the dialog tries to attach.</p>
+</blockquote>
+<h3 id="full-activity-example">Full Activity example</h3>
+<div class="highlight"><pre><span></span><code><span class="kd">class</span><span class="w"> </span><span class="nc">MainActivity</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">AppCompatActivity</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">    </span><span class="kd">override</span><span class="w"> </span><span class="kd">fun</span><span class="w"> </span><span class="nf">onCreate</span><span class="p">(</span><span class="n">savedInstanceState</span><span class="p">:</span><span class="w"> </span><span class="n">Bundle?)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">super</span><span class="p">.</span><span class="na">onCreate</span><span class="p">(</span><span class="n">savedInstanceState</span><span class="p">)</span>
+<span class="w">        </span><span class="n">setContentView</span><span class="p">(</span><span class="n">R</span><span class="p">.</span><span class="na">layout</span><span class="p">.</span><span class="na">activity_main</span><span class="p">)</span>
+
+<span class="w">        </span><span class="n">observeSpinEvents</span><span class="p">()</span>
+
+<span class="w">        </span><span class="n">findViewById</span><span class="o">&lt;</span><span class="n">Button</span><span class="o">&gt;</span><span class="p">(</span><span class="n">R</span><span class="p">.</span><span class="na">id</span><span class="p">.</span><span class="na">btnSpin</span><span class="p">).</span><span class="na">setOnClickListener</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">SpinSdkCore</span><span class="p">.</span><span class="na">show</span><span class="p">(</span>
+<span class="w">                </span><span class="n">context</span><span class="w">        </span><span class="o">=</span><span class="w"> </span><span class="k">this</span><span class="p">,</span>
+<span class="w">                </span><span class="n">config</span><span class="w">         </span><span class="o">=</span><span class="w"> </span><span class="n">SpinConfig</span><span class="p">(</span><span class="n">accessToken</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">authRepo</span><span class="p">.</span><span class="na">currentToken</span><span class="p">),</span>
+<span class="w">                </span><span class="n">onTokenRefresh</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">authRepo</span><span class="p">.</span><span class="na">refreshToken</span><span class="p">()</span><span class="w"> </span><span class="p">},</span>
+<span class="w">            </span><span class="p">)</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">fun</span><span class="w"> </span><span class="nf">observeSpinEvents</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">lifecycleScope</span><span class="p">.</span><span class="na">launch</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">repeatOnLifecycle</span><span class="p">(</span><span class="n">Lifecycle</span><span class="p">.</span><span class="na">State</span><span class="p">.</span><span class="na">STARTED</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="n">SpinSdkCore</span><span class="p">.</span><span class="na">events</span><span class="p">.</span><span class="na">collect</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">event</span><span class="w"> </span><span class="o">-&gt;</span>
+<span class="w">                    </span><span class="k">when</span><span class="w"> </span><span class="p">(</span><span class="n">event</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                        </span><span class="k">is</span><span class="w"> </span><span class="n">SpinEvent</span><span class="p">.</span><span class="na">SpinCompleted</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                            </span><span class="n">Toast</span><span class="p">.</span><span class="na">makeText</span><span class="p">(</span>
+<span class="w">                                </span><span class="k">this</span><span class="nd">@MainActivity</span><span class="p">,</span>
+<span class="w">                                </span><span class="s">&quot;You won: </span><span class="si">${</span><span class="n">event</span><span class="p">.</span><span class="na">reward</span><span class="p">.</span><span class="na">title</span><span class="si">}</span><span class="s">&quot;</span><span class="p">,</span>
+<span class="w">                                </span><span class="n">Toast</span><span class="p">.</span><span class="na">LENGTH_SHORT</span><span class="p">,</span>
+<span class="w">                            </span><span class="p">).</span><span class="na">show</span><span class="p">()</span>
+<span class="w">                        </span><span class="p">}</span>
+<span class="w">                        </span><span class="k">is</span><span class="w"> </span><span class="n">SpinEvent</span><span class="p">.</span><span class="na">SpinFailed</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                            </span><span class="n">Toast</span><span class="p">.</span><span class="na">makeText</span><span class="p">(</span><span class="k">this</span><span class="nd">@MainActivity</span><span class="p">,</span><span class="w"> </span><span class="n">event</span><span class="p">.</span><span class="na">error</span><span class="p">,</span><span class="w"> </span><span class="n">Toast</span><span class="p">.</span><span class="na">LENGTH_SHORT</span><span class="p">).</span><span class="na">show</span><span class="p">()</span>
+<span class="w">                        </span><span class="p">}</span>
+<span class="w">                        </span><span class="k">is</span><span class="w"> </span><span class="n">SpinEvent</span><span class="p">.</span><span class="na">AuthFailed</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                            </span><span class="n">startActivity</span><span class="p">(</span><span class="n">Intent</span><span class="p">(</span><span class="k">this</span><span class="nd">@MainActivity</span><span class="p">,</span><span class="w"> </span><span class="n">LoginActivity</span><span class="o">::</span><span class="n">class</span><span class="p">.</span><span class="na">java</span><span class="p">))</span>
+<span class="w">                        </span><span class="p">}</span>
+<span class="w">                        </span><span class="k">else</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="kt">Unit</span>
+<span class="w">                    </span><span class="p">}</span>
+<span class="w">                </span><span class="p">}</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<hr />
+<h2 id="6-integration-path-b-pure-compose-host">6. Integration Path B — Pure Compose Host</h2>
+<p>Use the <code>SpinAndWin</code> composable when your host screen is already written in Jetpack Compose. The SDK renders as a <code>ModalBottomSheet</code> inside your existing composition.</p>
+<blockquote>
+<p><strong>Note:</strong> <code>SpinSdkCore.events</code> still fires all events from this path <strong>except</strong>
+<code>SpinEvent.SheetOpened</code> and <code>SpinEvent.SheetDismissed</code>. Those two lifecycle events are owned
+by your composable via <code>onDismiss</code>.</p>
+</blockquote>
+<h3 id="step-1-hoist-a-visibility-flag">Step 1 — hoist a visibility flag</h3>
+<div class="highlight"><pre><span></span><code><span class="kd">var</span><span class="w"> </span><span class="nv">showSpin</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="n">rememberSaveable</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">mutableStateOf</span><span class="p">(</span><span class="kc">false</span><span class="p">)</span><span class="w"> </span><span class="p">}</span>
+</code></pre></div>
+<h3 id="step-2-place-the-composable">Step 2 — place the composable</h3>
+<div class="highlight"><pre><span></span><code><span class="n">SpinAndWin</span><span class="p">(</span>
+<span class="w">    </span><span class="n">visible</span><span class="w">        </span><span class="o">=</span><span class="w"> </span><span class="n">showSpin</span><span class="p">,</span>
+<span class="w">    </span><span class="n">onDismiss</span><span class="w">      </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">showSpin</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">false</span><span class="w"> </span><span class="p">},</span>
+<span class="w">    </span><span class="n">config</span><span class="w">         </span><span class="o">=</span><span class="w"> </span><span class="n">SpinConfig</span><span class="p">(</span><span class="n">accessToken</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">authRepo</span><span class="p">.</span><span class="na">currentToken</span><span class="p">),</span>
+<span class="w">    </span><span class="n">onTokenRefresh</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">authRepo</span><span class="p">.</span><span class="na">refreshToken</span><span class="p">()</span><span class="w"> </span><span class="p">},</span>
+<span class="p">)</span>
+</code></pre></div>
+<h3 id="step-3-trigger-show">Step 3 — trigger show</h3>
+<div class="highlight"><pre><span></span><code><span class="n">Button</span><span class="p">(</span><span class="n">onClick</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">showSpin</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span><span class="w"> </span><span class="p">})</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">Text</span><span class="p">(</span><span class="s">&quot;Spin the wheel&quot;</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>The sheet plays its slide-down animation and leaves composition automatically when <code>showSpin</code>
+becomes <code>false</code> — you only own the boolean.</p>
+<h3 id="full-composable-screen-example">Full composable screen example</h3>
+<div class="highlight"><pre><span></span><code><span class="nd">@Composable</span>
+<span class="kd">fun</span><span class="w"> </span><span class="nf">HomeScreen</span><span class="p">(</span><span class="n">viewModel</span><span class="p">:</span><span class="w"> </span><span class="n">HomeViewModel</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">viewModel</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">var</span><span class="w"> </span><span class="nv">showSpin</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="n">rememberSaveable</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">mutableStateOf</span><span class="p">(</span><span class="kc">false</span><span class="p">)</span><span class="w"> </span><span class="p">}</span>
+
+<span class="w">    </span><span class="c1">// Observe events</span>
+<span class="w">    </span><span class="n">LaunchedEffect</span><span class="p">(</span><span class="kt">Unit</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">SpinSdkCore</span><span class="p">.</span><span class="na">events</span><span class="p">.</span><span class="na">collect</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">event</span><span class="w"> </span><span class="o">-&gt;</span>
+<span class="w">            </span><span class="k">when</span><span class="w"> </span><span class="p">(</span><span class="n">event</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="k">is</span><span class="w"> </span><span class="n">SpinEvent</span><span class="p">.</span><span class="na">SpinCompleted</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="cm">/* handle reward */</span><span class="w"> </span><span class="p">}</span>
+<span class="w">                </span><span class="k">is</span><span class="w"> </span><span class="n">SpinEvent</span><span class="p">.</span><span class="na">SpinFailed</span><span class="w">    </span><span class="o">-&gt;</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="cm">/* handle error  */</span><span class="w"> </span><span class="p">}</span>
+<span class="w">                </span><span class="k">is</span><span class="w"> </span><span class="n">SpinEvent</span><span class="p">.</span><span class="na">AuthFailed</span><span class="w">    </span><span class="o">-&gt;</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="cm">/* redirect to login */</span><span class="w"> </span><span class="p">}</span>
+<span class="w">                </span><span class="k">else</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="kt">Unit</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="c1">// Your screen content</span>
+<span class="w">    </span><span class="n">Column</span><span class="p">(</span>
+<span class="w">        </span><span class="n">modifier</span><span class="w">            </span><span class="o">=</span><span class="w"> </span><span class="n">Modifier</span><span class="p">.</span><span class="na">fillMaxSize</span><span class="p">(),</span>
+<span class="w">        </span><span class="n">horizontalAlignment</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Alignment</span><span class="p">.</span><span class="na">CenterHorizontally</span><span class="p">,</span>
+<span class="w">        </span><span class="n">verticalArrangement</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Arrangement</span><span class="p">.</span><span class="na">Center</span><span class="p">,</span>
+<span class="w">    </span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">Button</span><span class="p">(</span><span class="n">onClick</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">showSpin</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span><span class="w"> </span><span class="p">})</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">Text</span><span class="p">(</span><span class="s">&quot;Play Spin &amp; Win&quot;</span><span class="p">)</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="c1">// SDK sheet — place outside your main layout so it overlays correctly</span>
+<span class="w">    </span><span class="n">SpinAndWin</span><span class="p">(</span>
+<span class="w">        </span><span class="n">visible</span><span class="w">        </span><span class="o">=</span><span class="w"> </span><span class="n">showSpin</span><span class="p">,</span>
+<span class="w">        </span><span class="n">onDismiss</span><span class="w">      </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">showSpin</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">false</span><span class="w"> </span><span class="p">},</span>
+<span class="w">        </span><span class="n">config</span><span class="w">         </span><span class="o">=</span><span class="w"> </span><span class="n">SpinConfig</span><span class="p">(</span><span class="n">accessToken</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">viewModel</span><span class="p">.</span><span class="na">accessToken</span><span class="p">),</span>
+<span class="w">        </span><span class="n">onTokenRefresh</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">viewModel</span><span class="p">.</span><span class="na">refreshToken</span><span class="p">()</span><span class="w"> </span><span class="p">},</span>
+<span class="w">    </span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="controlling-visibility-from-a-viewmodel">Controlling visibility from a ViewModel</h3>
+<div class="highlight"><pre><span></span><code><span class="c1">// ViewModel</span>
+<span class="kd">class</span><span class="w"> </span><span class="nc">HomeViewModel</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">ViewModel</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">val</span><span class="w"> </span><span class="nv">_showSpin</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">MutableStateFlow</span><span class="p">(</span><span class="kc">false</span><span class="p">)</span>
+<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">showSpin</span><span class="p">:</span><span class="w"> </span><span class="n">StateFlow</span><span class="o">&lt;</span><span class="kt">Boolean</span><span class="o">&gt;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">_showSpin</span><span class="p">.</span><span class="na">asStateFlow</span><span class="p">()</span>
+
+<span class="w">    </span><span class="kd">fun</span><span class="w"> </span><span class="nf">onSpinClicked</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">_showSpin</span><span class="p">.</span><span class="na">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span><span class="w"> </span><span class="p">}</span>
+<span class="w">    </span><span class="kd">fun</span><span class="w"> </span><span class="nf">onSpinDismissed</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">_showSpin</span><span class="p">.</span><span class="na">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">false</span><span class="w"> </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kd">suspend</span><span class="w"> </span><span class="kd">fun</span><span class="w"> </span><span class="nf">refreshToken</span><span class="p">():</span><span class="w"> </span><span class="kt">String?</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">authRepo</span><span class="p">.</span><span class="na">refreshToken</span><span class="p">()</span>
+<span class="p">}</span>
+
+<span class="c1">// Composable</span>
+<span class="nd">@Composable</span>
+<span class="kd">fun</span><span class="w"> </span><span class="nf">HomeScreen</span><span class="p">(</span><span class="n">viewModel</span><span class="p">:</span><span class="w"> </span><span class="n">HomeViewModel</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">viewModel</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">showSpin</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="n">viewModel</span><span class="p">.</span><span class="na">showSpin</span><span class="p">.</span><span class="na">collectAsStateWithLifecycle</span><span class="p">()</span>
+
+<span class="w">    </span><span class="n">SpinAndWin</span><span class="p">(</span>
+<span class="w">        </span><span class="n">visible</span><span class="w">        </span><span class="o">=</span><span class="w"> </span><span class="n">showSpin</span><span class="p">,</span>
+<span class="w">        </span><span class="n">onDismiss</span><span class="w">      </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">viewModel</span><span class="p">.</span><span class="na">onSpinDismissed</span><span class="p">()</span><span class="w"> </span><span class="p">},</span>
+<span class="w">        </span><span class="n">config</span><span class="w">         </span><span class="o">=</span><span class="w"> </span><span class="n">SpinConfig</span><span class="p">(</span><span class="n">accessToken</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">viewModel</span><span class="p">.</span><span class="na">accessToken</span><span class="p">),</span>
+<span class="w">        </span><span class="n">onTokenRefresh</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">viewModel</span><span class="p">.</span><span class="na">refreshToken</span><span class="p">()</span><span class="w"> </span><span class="p">},</span>
+<span class="w">    </span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="advanced-scoping-the-sdks-state-with-viewmodelstoreowner">(Advanced) Scoping the SDK's state with <code>viewModelStoreOwner</code></h3>
+<p>By default the SDK scopes its internal <code>ViewModel</code> to <code>LocalViewModelStoreOwner.current</code> — usually
+your host Activity, which is the right choice for almost every integration. Override it only when
+you need the SDK's state to follow a narrower lifecycle, e.g. a navigation destination so it is
+cleared automatically when the user navigates away:</p>
+<div class="highlight"><pre><span></span><code><span class="kd">val</span><span class="w"> </span><span class="nv">navBackStackEntry</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">navController</span><span class="p">.</span><span class="na">currentBackStackEntryAsState</span><span class="p">().</span><span class="na">value</span>
+
+<span class="n">SpinAndWin</span><span class="p">(</span>
+<span class="w">    </span><span class="n">visible</span><span class="w">             </span><span class="o">=</span><span class="w"> </span><span class="n">showSpin</span><span class="p">,</span>
+<span class="w">    </span><span class="n">onDismiss</span><span class="w">           </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">showSpin</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">false</span><span class="w"> </span><span class="p">},</span>
+<span class="w">    </span><span class="n">config</span><span class="w">              </span><span class="o">=</span><span class="w"> </span><span class="n">SpinConfig</span><span class="p">(</span><span class="n">accessToken</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">token</span><span class="p">),</span>
+<span class="w">    </span><span class="n">viewModelStoreOwner</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">navBackStackEntry</span><span class="w"> </span><span class="o">?:</span><span class="w"> </span><span class="n">LocalViewModelStoreOwner</span><span class="p">.</span><span class="na">current</span><span class="o">!!</span><span class="p">,</span>
+<span class="p">)</span>
+</code></pre></div>
+<blockquote>
+<p><strong>Caveat:</strong> The owner you pass must outlive the sheet. An owner that is cleared while <code>visible</code>
+is <code>true</code> will drop the SDK's in-progress state mid-session. When in doubt, omit the parameter
+and let it default.</p>
+</blockquote>
+<hr />
+<h2 id="7-configuration-reference">7. Configuration Reference</h2>
+<div class="highlight"><pre><span></span><code><span class="kd">data</span><span class="w"> </span><span class="kd">class</span><span class="w"> </span><span class="nc">SpinConfig</span><span class="p">(</span>
+<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">initialTab</span><span class="w">  </span><span class="p">:</span><span class="w"> </span><span class="n">SpinTab</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">SpinTab</span><span class="p">.</span><span class="na">Spin</span><span class="p">,</span>
+<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">accessToken</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="kt">String</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+</code></pre></div>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>initialTab</code></td>
+<td><code>SpinTab</code></td>
+<td><code>SpinTab.Spin</code></td>
+<td>The tab pre-selected when the sheet opens.</td>
+</tr>
+<tr>
+<td><code>accessToken</code></td>
+<td><code>String</code></td>
+<td><code>""</code></td>
+<td>A valid Bearer token used to authenticate all SDK API calls. The subscriber's msisdn and segment are extracted from the token server-side. Pass an empty string only for unauthenticated testing — all API calls will return <code>401</code>.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="ontokenrefresh-callback"><code>onTokenRefresh</code> callback</h3>
+<p>Both <code>SpinSdkCore.show()</code> and <code>SpinAndWin</code> accept an optional <code>onTokenRefresh: suspend () -&gt; String?</code> callback:</p>
+<table>
+<thead>
+<tr>
+<th>Return value</th>
+<th>SDK behaviour</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Non-null <code>String</code></td>
+<td>SDK retries the failed request once with the new token.</td>
+</tr>
+<tr>
+<td><code>null</code></td>
+<td>SDK surfaces an auth-error state and emits <code>SpinEvent.AuthFailed</code>.</td>
+</tr>
+</tbody>
+</table>
+<p>If you do not supply <code>onTokenRefresh</code>, the default is <code>{ null }</code> — any 401 immediately results in <code>SpinEvent.AuthFailed</code>.</p>
+<hr />
+<h2 id="8-event-reference">8. Event Reference</h2>
+<div class="highlight"><pre><span></span><code><span class="kd">sealed</span><span class="w"> </span><span class="kd">interface</span><span class="w"> </span><span class="nc">SpinEvent</span>
+</code></pre></div>
+<table>
+<thead>
+<tr>
+<th>Event</th>
+<th>Payload</th>
+<th>When fired</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>SheetOpened</code></td>
+<td>—</td>
+<td>Immediately after <code>SpinSdkCore.show()</code> is called. <strong>Not fired</strong> on the Compose path.</td>
+</tr>
+<tr>
+<td><code>SheetDismissed</code></td>
+<td>—</td>
+<td>When the user swipes down or presses Back. <strong>Not fired</strong> on the Compose path.</td>
+</tr>
+<tr>
+<td><code>SpinTriggered</code></td>
+<td>—</td>
+<td>The user tapped the Spin button; wheel animation begins.</td>
+</tr>
+<tr>
+<td><code>SpinCompleted</code></td>
+<td><code>reward: Reward</code></td>
+<td>Wheel animation finished with a successful API response.</td>
+</tr>
+<tr>
+<td><code>SpinFailed</code></td>
+<td><code>error: String</code></td>
+<td>API call failed or daily spin limit exceeded.</td>
+</tr>
+<tr>
+<td><code>AuthFailed</code></td>
+<td>—</td>
+<td>A 401 was received and <code>onTokenRefresh</code> returned <code>null</code>. Redirect the user to your login screen.</td>
+</tr>
+<tr>
+<td><code>TabChanged</code></td>
+<td><code>tab: SpinTab</code></td>
+<td>User switched to a different tab.</td>
+</tr>
+<tr>
+<td><code>GoDetailsClicked</code></td>
+<td><code>rewardType: RewardType</code></td>
+<td>User tapped the "Go to Details" CTA on the result screen.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="reward-properties"><code>Reward</code> properties</h3>
+<div class="highlight"><pre><span></span><code><span class="kd">data</span><span class="w"> </span><span class="kd">class</span><span class="w"> </span><span class="nc">Reward</span><span class="p">(</span>
+<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">productId</span><span class="w">  </span><span class="p">:</span><span class="w"> </span><span class="kt">Int</span><span class="p">,</span>
+<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">type</span><span class="w">       </span><span class="p">:</span><span class="w"> </span><span class="n">RewardType</span><span class="p">,</span>
+<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">icon</span><span class="w">       </span><span class="p">:</span><span class="w"> </span><span class="kt">String</span><span class="p">,</span><span class="w">      </span><span class="c1">// URL — SVG or raster</span>
+<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">title</span><span class="w">      </span><span class="p">:</span><span class="w"> </span><span class="kt">String</span><span class="p">,</span><span class="w">      </span><span class="c1">// Full localised display name</span>
+<span class="p">)</span>
+</code></pre></div>
+<hr />
+<h2 id="9-reward-tab-types">9. Reward &amp; Tab Types</h2>
+<h3 id="rewardtype"><code>RewardType</code></h3>
+<table>
+<thead>
+<tr>
+<th>Value</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>PHYSICAL</code></td>
+<td>A physical, deliverable item (e.g. merchandise).</td>
+</tr>
+<tr>
+<td><code>INTERNET</code></td>
+<td>A mobile-internet data bundle.</td>
+</tr>
+<tr>
+<td><code>GP_POINTS</code></td>
+<td>Grameenphone loyalty points.</td>
+</tr>
+<tr>
+<td><code>TALKTIME</code></td>
+<td>Mobile airtime credit.</td>
+</tr>
+<tr>
+<td><code>VOUCHER</code></td>
+<td>A gift voucher.</td>
+</tr>
+<tr>
+<td><code>UNKNOWN</code></td>
+<td>Unrecognised type returned by the server. Treat as no prize.</td>
+</tr>
+<tr>
+<td><code>NOTHING</code></td>
+<td>The user did not win anything this spin.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="spintab"><code>SpinTab</code></h3>
+<table>
+<thead>
+<tr>
+<th>Value</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Spin</code></td>
+<td>Main spinning wheel — default opening tab.</td>
+</tr>
+<tr>
+<td><code>Details</code></td>
+<td>Terms &amp; conditions and reward catalogue.</td>
+</tr>
+<tr>
+<td><code>History</code></td>
+<td>User's past spin results.</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="10-proguard-r8">10. ProGuard / R8</h2>
+<p>The SDK ships a <code>consumer-rules.pro</code> file that is automatically merged into your app's ProGuard configuration. <strong>No manual rules are required.</strong></p>
+<p>If you observe obfuscation issues in release builds, ensure <code>minifyEnabled = true</code> is paired with the <code>proguard-android-optimize.txt</code> default rules in your app module.</p>
+<hr />
+<h2 id="11-common-patterns">11. Common Patterns</h2>
+<h3 id="deep-link-into-reward-details">Deep-link into reward details</h3>
+<p>When <code>GoDetailsClicked</code> fires, the user expects to land on your in-app product details page:</p>
+<div class="highlight"><pre><span></span><code><span class="k">is</span><span class="w"> </span><span class="n">SpinEvent</span><span class="p">.</span><span class="na">GoDetailsClicked</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">when</span><span class="w"> </span><span class="p">(</span><span class="n">event</span><span class="p">.</span><span class="na">rewardType</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">RewardType</span><span class="p">.</span><span class="na">INTERNET</span><span class="w">   </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">navController</span><span class="p">.</span><span class="na">navigate</span><span class="p">(</span><span class="s">&quot;internet_bundles&quot;</span><span class="p">)</span>
+<span class="w">        </span><span class="n">RewardType</span><span class="p">.</span><span class="na">GP_POINTS</span><span class="w">  </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">navController</span><span class="p">.</span><span class="na">navigate</span><span class="p">(</span><span class="s">&quot;gp_points_info&quot;</span><span class="p">)</span>
+<span class="w">        </span><span class="n">RewardType</span><span class="p">.</span><span class="na">TALKTIME</span><span class="w">   </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">navController</span><span class="p">.</span><span class="na">navigate</span><span class="p">(</span><span class="s">&quot;recharge&quot;</span><span class="p">)</span>
+<span class="w">        </span><span class="n">RewardType</span><span class="p">.</span><span class="na">PHYSICAL</span><span class="w">   </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">navController</span><span class="p">.</span><span class="na">navigate</span><span class="p">(</span><span class="s">&quot;physical_prizes&quot;</span><span class="p">)</span>
+<span class="w">        </span><span class="n">RewardType</span><span class="p">.</span><span class="na">VOUCHER</span><span class="w">    </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">navController</span><span class="p">.</span><span class="na">navigate</span><span class="p">(</span><span class="s">&quot;vouchers&quot;</span><span class="p">)</span>
+<span class="w">        </span><span class="k">else</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="kt">Unit</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="open-directly-to-the-history-tab">Open directly to the History tab</h3>
+<div class="highlight"><pre><span></span><code><span class="n">SpinSdkCore</span><span class="p">.</span><span class="na">show</span><span class="p">(</span>
+<span class="w">    </span><span class="n">context</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">this</span><span class="p">,</span>
+<span class="w">    </span><span class="n">config</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="n">SpinConfig</span><span class="p">(</span>
+<span class="w">        </span><span class="n">accessToken</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">authRepo</span><span class="p">.</span><span class="na">currentToken</span><span class="p">,</span>
+<span class="w">        </span><span class="n">initialTab</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="n">SpinTab</span><span class="p">.</span><span class="na">History</span><span class="p">,</span>
+<span class="w">    </span><span class="p">),</span>
+<span class="p">)</span>
+</code></pre></div>
+<h3 id="refresh-your-ui-after-the-sheet-closes">Refresh your UI after the sheet closes</h3>
+<div class="highlight"><pre><span></span><code><span class="k">is</span><span class="w"> </span><span class="n">SpinEvent</span><span class="p">.</span><span class="na">SheetDismissed</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">viewModel</span><span class="p">.</span><span class="na">refresh</span><span class="p">()</span>
+</code></pre></div>
+<h3 id="check-if-the-user-won-not-just-spun">Check if the user won (not just spun)</h3>
+<div class="highlight"><pre><span></span><code><span class="k">is</span><span class="w"> </span><span class="n">SpinEvent</span><span class="p">.</span><span class="na">SpinCompleted</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">reward</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">event</span><span class="p">.</span><span class="na">reward</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">reward</span><span class="p">.</span><span class="na">type</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">RewardType</span><span class="p">.</span><span class="na">NOTHING</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">reward</span><span class="p">.</span><span class="na">type</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">RewardType</span><span class="p">.</span><span class="na">UNKNOWN</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">celebrateWin</span><span class="p">(</span><span class="n">reward</span><span class="p">)</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="handle-token-expiry-gracefully">Handle token expiry gracefully</h3>
+<div class="highlight"><pre><span></span><code><span class="n">SpinSdkCore</span><span class="p">.</span><span class="na">show</span><span class="p">(</span>
+<span class="w">    </span><span class="n">context</span><span class="w">        </span><span class="o">=</span><span class="w"> </span><span class="k">this</span><span class="p">,</span>
+<span class="w">    </span><span class="n">config</span><span class="w">         </span><span class="o">=</span><span class="w"> </span><span class="n">SpinConfig</span><span class="p">(</span><span class="n">accessToken</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">authRepo</span><span class="p">.</span><span class="na">currentToken</span><span class="p">),</span>
+<span class="w">    </span><span class="n">onTokenRefresh</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">// Called on 401 — attempt a refresh and return the new token,</span>
+<span class="w">        </span><span class="c1">// or null to trigger SpinEvent.AuthFailed</span>
+<span class="w">        </span><span class="n">authRepo</span><span class="p">.</span><span class="na">refreshToken</span><span class="p">()</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="p">)</span>
+
+<span class="c1">// In your event handler:</span>
+<span class="k">is</span><span class="w"> </span><span class="n">SpinEvent</span><span class="p">.</span><span class="na">AuthFailed</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">startActivity</span><span class="p">(</span><span class="n">Intent</span><span class="p">(</span><span class="k">this</span><span class="p">,</span><span class="w"> </span><span class="n">LoginActivity</span><span class="o">::</span><span class="n">class</span><span class="p">.</span><span class="na">java</span><span class="p">))</span>
+</code></pre></div>
+<hr />
+<h2 id="12-faq">12. FAQ</h2>
+<p><strong>Q: What do I pass as <code>accessToken</code>?</strong><br />
+A: A valid JWT Bearer token from your authentication layer. The SDK attaches it as <code>Authorization: Bearer &lt;token&gt;</code> on every API call. The server extracts the subscriber's msisdn and segment from the token payload.</p>
+<p><strong>Q: Can I show the SDK from a Fragment?</strong><br />
+A: Yes. Pass <code>requireActivity()</code> as the context — not <code>requireContext()</code> — to ensure the dialog has a valid window token.</p>
+<div class="highlight"><pre><span></span><code><span class="n">SpinSdkCore</span><span class="p">.</span><span class="na">show</span><span class="p">(</span>
+<span class="w">    </span><span class="n">context</span><span class="w">        </span><span class="o">=</span><span class="w"> </span><span class="n">requireActivity</span><span class="p">(),</span>
+<span class="w">    </span><span class="n">config</span><span class="w">         </span><span class="o">=</span><span class="w"> </span><span class="n">SpinConfig</span><span class="p">(</span><span class="n">accessToken</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">authRepo</span><span class="p">.</span><span class="na">currentToken</span><span class="p">),</span>
+<span class="w">    </span><span class="n">onTokenRefresh</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">authRepo</span><span class="p">.</span><span class="na">refreshToken</span><span class="p">()</span><span class="w"> </span><span class="p">},</span>
+<span class="p">)</span>
+</code></pre></div>
+<p><strong>Q: The sheet doesn't open a second time on the Compose path. What's wrong?</strong><br />
+A: Ensure your <code>onDismiss</code> sets your <code>visible</code> flag back to <code>false</code>. If it stays <code>true</code>, the SDK still considers the sheet open, so setting it <code>true</code> again has no effect.</p>
+<div class="highlight"><pre><span></span><code><span class="n">SpinAndWin</span><span class="p">(</span>
+<span class="w">    </span><span class="n">visible</span><span class="w">   </span><span class="o">=</span><span class="w"> </span><span class="n">showSpin</span><span class="p">,</span>
+<span class="w">    </span><span class="n">onDismiss</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">showSpin</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">false</span><span class="w"> </span><span class="p">},</span><span class="w"> </span><span class="c1">// required</span>
+<span class="p">)</span>
+</code></pre></div>
+<p><strong>Q: Can I observe events from multiple screens simultaneously?</strong><br />
+A: Yes. <code>SpinSdkCore.events</code> is a <code>SharedFlow</code> and supports multiple concurrent collectors. Each collector receives every event independently.</p>
+<p><strong>Q: What happens if <code>onTokenRefresh</code> returns <code>null</code>?</strong><br />
+A: The SDK surfaces an in-sheet auth-error state and emits <code>SpinEvent.AuthFailed</code>. Listen for this event and redirect the user to your login screen.</p>
+<p><strong>Q: Where do I report bugs or request features?</strong><br />
+A: Contact the SpinMyGP SDK team at <strong>mushfiq.gakk@gmail.com</strong>.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": ".", "features": ["navigation.tabs", "navigation.sections", "toc.integrate", "search.suggest", "search.highlight", "content.code.copy"], "search": "assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>
