@@ -583,4 +583,4 @@ A: Yes. `SpinSdkCore.events` is a `SharedFlow` and supports multiple concurrent 
 A: The SDK surfaces an in-sheet auth-error state and emits `SpinEvent.AuthFailed`. Listen for this event and redirect the user to your login screen.
 
 **Q: Where do I report bugs or request features?**  
-A: Contact the SpinMyGP SDK team at **mushfiq.gakk@gmail.com**.
+A: Contact the SpinMyGP SDK team at **ahsan@cloud7bd.com**.
