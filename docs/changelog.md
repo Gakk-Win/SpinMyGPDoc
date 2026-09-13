@@ -2,6 +2,9 @@
 
 All notable changes to the SpinMyGP SDK will be documented in this file.
 
+### 0.0.3 (2026-09-13)
+- Downgrade haze from 1.6.10 to 1.6.0
+
 ### 0.0.2 (2026-09-13)
 - Downgrade the compile SDK to 35 and update related dependencies to ensure compatibility with SDK 35.
 
