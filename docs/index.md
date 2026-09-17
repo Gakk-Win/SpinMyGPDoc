@@ -1,6 +1,6 @@
 # SpinMyGP SDK — Partner Integration Guide
 
-**SDK version:** `0.0.3`  
+**SDK version:** `0.0.4`  
 **Min Android SDK:** 21 (Android 5.0)  
 **Kotlin:** 2.1+  
 **Compose BOM:** 2024.09.00+
@@ -34,7 +34,7 @@
 | `compileSdk` | 35+ |
 | `minSdk` | 21 |
 
-The SDK ships as an AAR and bundles all its own transitive dependencies (Compose Material3, Ktor, Coil, Lottie, Haze). You do not need to declare any of those yourself.
+The SDK ships as an AAR whose POM declares all of its own dependencies (Compose Material3, Material Components, Ktor, Coil, Lottie, Haze, DataStore). Gradle pulls them in transitively, so you do not need to declare any of those yourself.
 
 ---
 
@@ -82,9 +82,11 @@ In your **app module** `build.gradle.kts`:
 
 ```kotlin
 dependencies {
-    implementation("com.gakk.spin:mygp:0.0.3")
+    implementation("com.gakk.spin:mygp:0.0.4-dev")
 }
 ```
+
+> **Dev and production builds:** SDK versions ending in `-dev` connect to the dev server. They also show a small test label at the top of the sheet with the subscriber's MSISDN and segment, read from the access token. Use them only in test builds of your app. Production versions have no suffix and no label.
 
 Sync Gradle — the SDK is now available.
 
@@ -109,6 +111,8 @@ SpinSdkCore.events: SharedFlow<SpinEvent>
 ```
 
 The flow has a **replay cache of 1**, so you will always receive the most recent event even if you subscribe slightly late.
+
+> **Heads-up:** Because of the replay cache, a newly started collector immediately receives the *last* event the SDK emitted. That event may come from an earlier session, e.g. a `SpinCompleted` from a spin a few minutes ago. If an event triggers a one-off action such as navigation or a reward dialog, guard against handling it twice. For example, only react to events that arrive after you opened the sheet.
 
 ### Recommended — observe in an Activity
 
@@ -137,6 +141,8 @@ class MainActivity : AppCompatActivity() {
             is SpinEvent.AuthFailed          -> redirectToLogin()
             is SpinEvent.TabChanged          -> trackTabChange(event.tab)
             is SpinEvent.GoDetailsClicked    -> openRewardDetails(event.rewardType)
+            is SpinEvent.NotificationScheduleRequested ->
+                scheduleSpinReminder(event.nextSpinAtEpochMs)
         }
     }
 }
@@ -171,6 +177,9 @@ Use `SpinSdkCore.show()` when your host screen is a classic View-based Activity 
 SpinSdkCore.show(context, config, onTokenRefresh)
 ```
 
+- Calling `show()` while an SDK sheet is already showing does nothing, so repeated taps on your button cannot stack dialogs.
+- Each call creates a fresh sheet. Data is re-fetched and `config.initialTab` is applied on every open.
+
 ### Minimal example
 
 ```kotlin
@@ -200,6 +209,8 @@ override fun onDestroy() {
     super.onDestroy()
 }
 ```
+
+`SpinSdkCore.dismiss()` is safe to call when no sheet is showing. Dismissing a visible sheet emits `SpinEvent.SheetDismissed`, just like a user-initiated close. `dismiss()` only affects sheets opened with `SpinSdkCore.show()`. On the Compose path, set your `visible` flag to `false` instead.
 
 ### With all options
 
@@ -302,6 +313,21 @@ Button(onClick = { showSpin = true }) {
 The sheet plays its slide-down animation and leaves composition automatically when `showSpin`
 becomes `false` — you only own the boolean.
 
+Unlike `SpinSdkCore.show()`, the SDK's state on this path lives as long as `viewModelStoreOwner`
+(see [below](#advanced-scoping-the-sdks-state-with-viewmodelstoreowner)). Loaded tabs, the selected
+tab, and a result screen the user closed on all carry over when you open the sheet again, and survive
+rotation. `config.initialTab` applies only when that state is first created: on the first open, or
+after `accessToken` changes.
+
+The SDK calls `onDismiss` whenever the sheet should close: swipe-down, scrim tap, Back, the close
+button, and the **View Details** button on the result screen. Always set your flag to `false` there.
+
+> **Keep `accessToken` stable.** Each distinct `SpinConfig.accessToken` value makes the SDK start over
+> with a new HTTP client and fresh internal state. Don't build a new token during composition, e.g.
+> `SpinConfig(accessToken = generateToken())` inside a composable. Keep the token in a stable holder
+> such as your `ViewModel` or auth repository, and let it change only when it has actually been
+> refreshed.
+
 ### Full composable screen example
 
 ```kotlin
@@ -372,10 +398,11 @@ fun HomeScreen(viewModel: HomeViewModel = viewModel()) {
 
 ### (Advanced) Scoping the SDK's state with `viewModelStoreOwner`
 
-By default the SDK scopes its internal `ViewModel` to `LocalViewModelStoreOwner.current` — usually
-your host Activity, which is the right choice for almost every integration. Override it only when
-you need the SDK's state to follow a narrower lifecycle, e.g. a navigation destination so it is
-cleared automatically when the user navigates away:
+By default the SDK scopes its internal `ViewModel`, and the network client it owns, to
+`LocalViewModelStoreOwner.current`. That is usually your host Activity, which is the right choice
+for almost every integration. Override it only when you need the SDK's state to follow a narrower
+lifecycle, e.g. a navigation destination so it is cleared automatically when the user navigates
+away:
 
 ```kotlin
 val navBackStackEntry = navController.currentBackStackEntryAsState().value
@@ -406,7 +433,7 @@ data class SpinConfig(
 | Parameter     | Type      | Default        | Description |
 |---------------|-----------|----------------|-------------|
 | `initialTab`  | `SpinTab` | `SpinTab.Spin` | The tab pre-selected when the sheet opens. |
-| `accessToken` | `String`  | `""`           | A valid Bearer token used to authenticate all SDK API calls. The subscriber's msisdn and segment are extracted from the token server-side. Pass an empty string only for unauthenticated testing — all API calls will return `401`. |
+| `accessToken` | `String`  | `""`           | A valid Bearer token used to authenticate all SDK API calls. The subscriber's msisdn and segment are extracted from the token server-side. The token payload should contain an `msisdn` claim (see [FAQ](#12-faq)). Pass an empty string only for unauthenticated testing — all API calls will return `401`. |
 
 ### `onTokenRefresh` callback
 
@@ -414,8 +441,10 @@ Both `SpinSdkCore.show()` and `SpinAndWin` accept an optional `onTokenRefresh: s
 
 | Return value | SDK behaviour |
 |---|---|
-| Non-null `String` | SDK retries the failed request once with the new token. |
+| Non-null `String` | SDK retries the failed request once with the new token, and uses it for later requests in the same session. If the retry also returns `401`, `SpinEvent.AuthFailed` is emitted. |
 | `null` | SDK surfaces an auth-error state and emits `SpinEvent.AuthFailed`. |
+
+`onTokenRefresh` is a `suspend` function, so you can call your refresh endpoint directly inside it. Wrap blocking calls in `withContext(Dispatchers.IO)`. The SDK may call it for any request, including loading the wheel, details, or history, not only for spins.
 
 If you do not supply `onTokenRefresh`, the default is `{ null }` — any 401 immediately results in `SpinEvent.AuthFailed`.
 
@@ -429,14 +458,15 @@ sealed interface SpinEvent
 
 | Event | Payload | When fired |
 |---|---|---|
-| `SheetOpened` | — | Immediately after `SpinSdkCore.show()` is called. **Not fired** on the Compose path. |
-| `SheetDismissed` | — | When the user swipes down or presses Back. **Not fired** on the Compose path. |
-| `SpinTriggered` | — | The user tapped the Spin button; wheel animation begins. |
-| `SpinCompleted` | `reward: Reward` | Wheel animation finished with a successful API response. |
-| `SpinFailed` | `error: String` | API call failed or daily spin limit exceeded. |
-| `AuthFailed` | — | A 401 was received and `onTokenRefresh` returned `null`. Redirect the user to your login screen. |
-| `TabChanged` | `tab: SpinTab` | User switched to a different tab. |
-| `GoDetailsClicked` | `rewardType: RewardType` | User tapped the "Go to Details" CTA on the result screen. |
+| `SheetOpened` | — | The sheet opened by `SpinSdkCore.show()` appears on screen. **Not fired** on the Compose path. |
+| `SheetDismissed` | — | The sheet opened by `SpinSdkCore.show()` closes for any reason: swipe-down, Back, close button, the **View Details** button, or `SpinSdkCore.dismiss()`. **Not fired** on the Compose path. |
+| `SpinTriggered` | — | The user tapped the Spin button. Fired before the spin request is sent; the wheel starts turning once the server responds. |
+| `SpinCompleted` | `reward: Reward` | The wheel stopped on the prize returned by the server. Also fired for "no prize" results (`RewardType.NOTHING`). |
+| `SpinFailed` | `error: String` | The spin could not be completed: network or server error, daily spin limit reached, or an invalid server response. `error` is a localised, user-facing message, not a stable error code. |
+| `AuthFailed` | — | Any SDK request got a `401` that could not be recovered: `onTokenRefresh` returned `null` or the retry also failed. Redirect the user to your login screen. |
+| `TabChanged` | `tab: SpinTab` | The user selected a tab. Not fired for `initialTab` when the sheet opens. |
+| `GoDetailsClicked` | `rewardType: RewardType` | The user tapped **View Details** on the result screen. The button is shown only for winning results (any type except `NOTHING`). The SDK closes the sheet right after this event. |
+| `NotificationScheduleRequested` | `nextSpinAtEpochMs: Long` | The user opted into spin reminders (**Notify Me** → **Turn on Notification**), and again after every later spin while the opt-in is still active, because the next-spin time has moved. `nextSpinAtEpochMs` is wall-clock UTC milliseconds and is always in the future. **You** schedule and post the reminder — see [Scheduling the reminder notification](#scheduling-the-reminder-notification). |
 
 ### `Reward` properties
 
@@ -444,8 +474,8 @@ sealed interface SpinEvent
 data class Reward(
     val productId  : Int,
     val type       : RewardType,
-    val icon       : String,      // URL — SVG or raster
-    val title      : String,      // Full localised display name
+    val icon       : String,      // URL — SVG or raster; may be empty
+    val title      : String,      // Display name as configured on the server
 )
 ```
 
@@ -462,8 +492,11 @@ data class Reward(
 | `GP_POINTS` | Grameenphone loyalty points. |
 | `TALKTIME` | Mobile airtime credit. |
 | `VOUCHER` | A gift voucher. |
-| `UNKNOWN` | Unrecognised type returned by the server. Treat as no prize. |
+| `UNKNOWN` | A prize whose type this SDK version does not recognise, typically a type added on the server after your SDK release. The user still won it, so handle it generically, e.g. by showing `reward.title`. |
 | `NOTHING` | The user did not win anything this spin. |
+
+> Every type except `NOTHING` is a win. The SDK's result screen shows "Congratulations" and the
+> **View Details** button for all of them, including `UNKNOWN`.
 
 ### `SpinTab`
 
@@ -487,7 +520,7 @@ If you observe obfuscation issues in release builds, ensure `minifyEnabled = tru
 
 ### Deep-link into reward details
 
-When `GoDetailsClicked` fires, the user expects to land on your in-app product details page:
+When `GoDetailsClicked` fires, the user expects to land on your in-app product details page. The SDK closes its sheet automatically, so you only need to navigate:
 
 ```kotlin
 is SpinEvent.GoDetailsClicked -> {
@@ -501,6 +534,33 @@ is SpinEvent.GoDetailsClicked -> {
     }
 }
 ```
+
+### Scheduling the reminder notification
+
+The sheet offers the user a **Notify Me** reminder while the spin is on cooldown, but the SDK never
+posts a notification and never requests `POST_NOTIFICATIONS`. It only tells you *that* the user
+opted in and *when* the next spin unlocks — scheduling, the notification channel, and the runtime
+permission are yours.
+
+```kotlin
+is SpinEvent.NotificationScheduleRequested -> scheduleSpinReminder(event.nextSpinAtEpochMs)
+```
+
+Schedule it however your app already schedules work — an `AlarmManager` alarm at `RTC_WAKEUP`, or
+`WorkManager` with `initialDelay = nextSpinAtEpochMs - System.currentTimeMillis()` (alarms do not
+survive a reboot; `WorkManager` restores its own work). Four things to keep in mind:
+
+- **The event repeats**, at opt-in and again after each later spin while the opt-in is still on,
+  because the next-spin time has moved. Schedule idempotently — a stable `PendingIntent` request
+  code, or a fixed unique work name — so the new reminder replaces the pending one.
+- **Request `POST_NOTIFICATIONS` yourself** on API 33+. Handling this event is a natural moment to
+  ask, since the user just opted in.
+- **The timestamp is wall-clock UTC milliseconds**, always in the future when the event is emitted.
+  The SDK does not emit while a spin is already available, because there would be nothing to
+  schedule.
+- **The SDK remembers the opt-in, not your schedule.** The opt-in is stored per subscriber on the
+  device, so the sheet keeps showing "We'll notify you" even if your reminder was never scheduled
+  or was later cancelled.
 
 ### Open directly to the History tab
 
@@ -517,18 +577,15 @@ SpinSdkCore.show(
 ### Refresh your UI after the sheet closes
 
 ```kotlin
+// View-based path (SpinSdkCore.show)
 is SpinEvent.SheetDismissed -> viewModel.refresh()
-```
 
-### Check if the user won (not just spun)
-
-```kotlin
-is SpinEvent.SpinCompleted -> {
-    val reward = event.reward
-    if (reward.type != RewardType.NOTHING && reward.type != RewardType.UNKNOWN) {
-        celebrateWin(reward)
-    }
-}
+// Compose path (SpinAndWin) — SheetDismissed is not emitted, use onDismiss instead
+SpinAndWin(
+    visible   = showSpin,
+    onDismiss = { showSpin = false; viewModel.refresh() },
+    config    = SpinConfig(accessToken = token),
+)
 ```
 
 ### Handle token expiry gracefully
@@ -554,6 +611,8 @@ is SpinEvent.AuthFailed -> startActivity(Intent(this, LoginActivity::class.java)
 
 **Q: What do I pass as `accessToken`?**  
 A: A valid JWT Bearer token from your authentication layer. The SDK attaches it as `Authorization: Bearer <token>` on every API call. The server extracts the subscriber's msisdn and segment from the token payload.
+
+The SDK also reads the `msisdn` claim from the token on the device, without verifying it. It uses the claim to keep the sound setting, notification opt-in, and next-spin countdown separate for each subscriber, which matters on shared devices. Make sure your tokens include an `msisdn` claim.
 
 **Q: Can I show the SDK from a Fragment?**  
 A: Yes. Pass `requireActivity()` as the context — not `requireContext()` — to ensure the dialog has a valid window token.
@@ -581,6 +640,15 @@ A: Yes. `SpinSdkCore.events` is a `SharedFlow` and supports multiple concurrent 
 
 **Q: What happens if `onTokenRefresh` returns `null`?**  
 A: The SDK surfaces an in-sheet auth-error state and emits `SpinEvent.AuthFailed`. Listen for this event and redirect the user to your login screen.
+
+**Q: Does the SDK request notification permission or send push notifications?**  
+A: No. The "Notify Me" / "Turn on Notification" prompt inside the sheet records the user's opt-in locally and emits `SpinEvent.NotificationScheduleRequested(nextSpinAtEpochMs)`. The SDK does not request `POST_NOTIFICATIONS` and does not schedule or post any notifications — your app schedules the reminder from that event. See [Scheduling the reminder notification](#scheduling-the-reminder-notification).
+
+**Q: I upgraded to `0.0.4` and my `when (event)` no longer compiles. Why?**  
+A: `0.0.4` adds `SpinEvent.NotificationScheduleRequested` to the sealed `SpinEvent` interface, so an exhaustive `when` without an `else` branch now has an unhandled case. Either handle the new event — see [Scheduling the reminder notification](#scheduling-the-reminder-notification) — or add `else -> Unit`. This is a source-level change only; nothing about the existing events changed.
+
+**Q: Can I change the UI language?**  
+A: All SDK UI strings are Android string resources prefixed with `spin_sdk_`. You can override any of them by declaring a string with the same name in your app's `res/values*/strings.xml`. Server-provided text, such as reward names and terms, is shown as returned by the API.
 
 **Q: Where do I report bugs or request features?**  
 A: Contact the SpinMyGP SDK team at **ahsan@cloud7bd.com**.

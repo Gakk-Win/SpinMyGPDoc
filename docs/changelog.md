@@ -2,6 +2,14 @@
 
 All notable changes to the SpinMyGP SDK will be documented in this file.
 
+### 0.0.4-dev (2026-09-17)
+- Add `SpinEvent.NotificationScheduleRequested(nextSpinAtEpochMs)`. It is emitted when the user opts into spin reminders, and again after each later spin while the opt-in is on, so your app can schedule the reminder. The SDK does not post notifications itself. An exhaustive `when (event)` needs a new branch or an `else`.
+- Report `VOUCHER` prizes as `RewardType.VOUCHER`. Earlier versions reported them as `UNKNOWN`.
+- `RewardType.UNKNOWN` is a win: a prize whose type this SDK version does not recognise.
+- Fix the Compose path (`SpinAndWin`) failing every request with "Something went wrong" after the sheet was closed and reopened, or after a rotation.
+- Versions ending in `-dev` connect to the dev server and show a test label with the subscriber's MSISDN and segment. Production versions have no suffix and no label.
+- Clarify event timing, `show()` and `dismiss()` behaviour, the event replay cache, and keeping `accessToken` stable on the Compose path.
+
 ### 0.0.3 (2026-09-13)
 - Downgrade haze from 1.6.10 to 1.6.0
 
