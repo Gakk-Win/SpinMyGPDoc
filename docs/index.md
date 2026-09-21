@@ -3,7 +3,7 @@
 **SDK version:** `0.0.4`  
 **Min Android SDK:** 21 (Android 5.0)  
 **Kotlin:** 2.1+  
-**Compose BOM:** 2024.09.00+
+**Compose BOM:** 2026.04.01+
 
 ---
 
@@ -30,7 +30,7 @@
 |---|---|
 | Android Gradle Plugin | 8.0+ |
 | Kotlin | 2.1.0+ |
-| Jetpack Compose | BOM 2024.09.00+ |
+| Jetpack Compose | BOM 2026.04.01+ |
 | `compileSdk` | 35+ |
 | `minSdk` | 21 |
 
@@ -109,10 +109,6 @@ Before you show the sheet, set up an event observer so you can react to what hap
 ```kotlin
 SpinSdkCore.events: SharedFlow<SpinEvent>
 ```
-
-The flow has a **replay cache of 1**, so you will always receive the most recent event even if you subscribe slightly late.
-
-> **Heads-up:** Because of the replay cache, a newly started collector immediately receives the *last* event the SDK emitted. That event may come from an earlier session, e.g. a `SpinCompleted` from a spin a few minutes ago. If an event triggers a one-off action such as navigation or a reward dialog, guard against handling it twice. For example, only react to events that arrive after you opened the sheet.
 
 ### Recommended — observe in an Activity
 
