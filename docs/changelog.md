@@ -2,7 +2,7 @@
 
 All notable changes to the SpinMyGP SDK will be documented in this file.
 
-### 0.0.5-dev (2026-09-21)
+### 0.0.5 (2026-09-21)
 - Remove the `replay = 1` cache from the public `events` shared flow.
 - Make `accessToken` a required `SpinConfig` parameter without a default value.
 - Migrate list-based UI states and models to `ImmutableList` for improved stability and performance.
