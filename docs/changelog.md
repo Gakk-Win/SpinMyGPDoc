@@ -2,6 +2,14 @@
 
 All notable changes to the SpinMyGP SDK will be documented in this file.
 
+### 0.0.6 (2026-09-23)
+- Add `RewardType.SMS`. Earlier versions reported SMS prizes as `UNKNOWN`.
+- Compose path: every open is a fresh session, like `SpinSdkCore.show()` — `initialTab` re-applies, data re-fetches, and no stale result screen or in-flight spin carries over.
+- `viewModelStoreOwner` now bounds a session's maximum lifetime instead of holding the SDK's `ViewModel`. Scoping it to a `NavBackStackEntry` still ends an open session on navigation, and still survives rotation.
+- Fix the sheet flickering on rotation.
+- Dialog path: fix the details and history blur showing as a flat tint until the first scroll or tab switch.
+- Dialog path: fix history pull-to-refresh and scrolling a list back up — downward drags moved the sheet instead of reaching the content.
+
 ### 0.0.5 (2026-09-21)
 - Remove the `replay = 1` cache from the public `events` shared flow.
 - Make `accessToken` a required `SpinConfig` parameter without a default value.

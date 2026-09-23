@@ -1,6 +1,6 @@
 # SpinMyGP SDK — Partner Integration Guide
 
-**SDK version:** `0.0.5`  
+**SDK version:** `0.0.6`  
 **Min Android SDK:** 21 (Android 5.0)  
 **Kotlin:** 2.1+  
 **Compose BOM:** 2026.04.01+
@@ -82,7 +82,7 @@ In your **app module** `build.gradle.kts`:
 
 ```kotlin
 dependencies {
-    implementation("com.gakk.spin:mygp:0.0.5-dev")
+    implementation("com.gakk.spin:mygp:0.0.6-dev")
 }
 ```
 
@@ -309,11 +309,13 @@ Button(onClick = { showSpin = true }) {
 The sheet plays its slide-down animation and leaves composition automatically when `showSpin`
 becomes `false` — you only own the boolean.
 
-Unlike `SpinSdkCore.show()`, the SDK's state on this path lives as long as `viewModelStoreOwner`
-(see [below](#advanced-scoping-the-sdks-state-with-viewmodelstoreowner)). Loaded tabs, the selected
-tab, and a result screen the user closed on all carry over when you open the sheet again, and survive
-rotation. `config.initialTab` applies only when that state is first created: on the first open, or
-after `accessToken` changes.
+Like `SpinSdkCore.show()`, every open is a fresh session. Closing the sheet releases the SDK's
+internal state, so the next open re-applies `config.initialTab`, re-fetches its data, and never
+reopens onto a result screen or a spin left over from last time.
+
+A session **does** survive configuration changes: rotate the device mid-spin and the sheet stays
+open with its state intact. Keep your own `visible` flag in `rememberSaveable` so it survives too —
+if it resets to `false` on rotation the SDK treats that as a close.
 
 The SDK calls `onDismiss` whenever the sheet should close: swipe-down, scrim tap, Back, the close
 button, and the **View Details** button on the result screen. Always set your flag to `false` there.
@@ -394,11 +396,14 @@ fun HomeScreen(viewModel: HomeViewModel = viewModel()) {
 
 ### (Advanced) Scoping the SDK's state with `viewModelStoreOwner`
 
-By default the SDK scopes its internal `ViewModel`, and the network client it owns, to
-`LocalViewModelStoreOwner.current`. That is usually your host Activity, which is the right choice
-for almost every integration. Override it only when you need the SDK's state to follow a narrower
-lifecycle, e.g. a navigation destination so it is cleared automatically when the user navigates
-away:
+The SDK keeps its internal `ViewModel`, and the network client it owns, in a store of its own that
+it clears when the sheet closes. `viewModelStoreOwner` is where that store is anchored, so it sets
+the session's *maximum* lifetime rather than holding the state itself.
+
+The default, `LocalViewModelStoreOwner.current`, is usually your host Activity and is the right
+choice for almost every integration. Override it only when an in-progress session should also end
+on something other than a close — e.g. a navigation destination, so an open sheet is torn down when
+the user navigates away:
 
 ```kotlin
 val navBackStackEntry = navController.currentBackStackEntryAsState().value
@@ -415,6 +420,9 @@ SpinAndWin(
 > is `true` will drop the SDK's in-progress state mid-session. When in doubt, omit the parameter
 > and let it default.
 
+> **Note:** A `NavBackStackEntry` is *not* cleared on rotation, so the sheet still survives
+> configuration changes when you scope it to one.
+
 ---
 
 ## 7. Configuration Reference
@@ -429,7 +437,7 @@ data class SpinConfig(
 | Parameter     | Type      | Default        | Description |
 |---------------|-----------|----------------|-------------|
 | `initialTab`  | `SpinTab` | `SpinTab.Spin` | The tab pre-selected when the sheet opens. |
-| `accessToken` | `String`  | `""`           | A valid Bearer token used to authenticate all SDK API calls. The subscriber's msisdn and segment are extracted from the token server-side. The token payload should contain an `msisdn` claim (see [FAQ](#12-faq)). Pass an empty string only for unauthenticated testing — all API calls will return `401`. |
+| `accessToken` | `String`  | _required_     | A valid Bearer token used to authenticate all SDK API calls. The subscriber's msisdn and segment are extracted from the token server-side. The token payload should contain an `msisdn` claim (see [FAQ](#12-faq)). Pass an empty string only for unauthenticated testing — all API calls will return `401`. |
 
 ### `onTokenRefresh` callback
 
@@ -488,6 +496,7 @@ data class Reward(
 | `GP_POINTS` | Grameenphone loyalty points. |
 | `TALKTIME` | Mobile airtime credit. |
 | `VOUCHER` | A gift voucher. |
+| `SMS` | A bundle of SMS messages. |
 | `UNKNOWN` | A prize whose type this SDK version does not recognise, typically a type added on the server after your SDK release. The user still won it, so handle it generically, e.g. by showing `reward.title`. |
 | `NOTHING` | The user did not win anything this spin. |
 
@@ -526,6 +535,7 @@ is SpinEvent.GoDetailsClicked -> {
         RewardType.TALKTIME   -> navController.navigate("recharge")
         RewardType.PHYSICAL   -> navController.navigate("physical_prizes")
         RewardType.VOUCHER    -> navController.navigate("vouchers")
+        RewardType.SMS        -> navController.navigate("sms_packs")
         else -> Unit
     }
 }
