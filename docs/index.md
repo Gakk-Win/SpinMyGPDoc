@@ -1,6 +1,6 @@
 # SpinMyGP SDK — Partner Integration Guide
 
-**SDK version:** `0.0.4`  
+**SDK version:** `0.0.5`  
 **Min Android SDK:** 21 (Android 5.0)  
 **Kotlin:** 2.1+  
 **Compose BOM:** 2026.04.01+
@@ -82,7 +82,7 @@ In your **app module** `build.gradle.kts`:
 
 ```kotlin
 dependencies {
-    implementation("com.gakk.spin:mygp:0.0.4-dev")
+    implementation("com.gakk.spin:mygp:0.0.5-dev")
 }
 ```
 
