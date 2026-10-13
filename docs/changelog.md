@@ -2,6 +2,13 @@
 
 All notable changes to the SpinMyGP SDK will be documented in this file.
 
+### 0.0.7 (2026-10-13)
+- Animate tab switches.
+- The countdown always uses English digits, whatever the app's locale.
+- Wheel: even, narrower gaps between slices, and slices closer to the inner ring and centre circle.
+- New History empty-state icon and a lighter Details terms subtitle.
+- Handle `null` or missing server fields: wheel rewards without an `id` are skipped, and a won spin without a next-spin time still shows the prize.
+
 ### 0.0.6 (2026-09-23)
 - Add `RewardType.SMS`. Earlier versions reported SMS prizes as `UNKNOWN`.
 - Compose path: every open is a fresh session, like `SpinSdkCore.show()` — `initialTab` re-applies, data re-fetches, and no stale result screen or in-flight spin carries over.
